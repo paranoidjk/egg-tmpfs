@@ -20,7 +20,29 @@ describe('test/tmpfs.test.js', () => {
 
   it('should delete tmp folder after request finish', () => {
     app.httpRequest()
-      .get('/?folder=foo')
+      .get('/case1?folder=foo')
+      .expect('hi, tmpfs')
+      .expect(200)
+      .end(() => {
+        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/foo')) === false);
+      });
+  });
+
+  it('should delete tmp folder after request error', () => {
+    app.httpRequest()
+      .get('/case1?folder=bar&scene=error')
+      .expect('mock error')
+      .expect(500)
+      .end(() => {
+        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/bar')) === false);
+      });
+  });
+
+  it('should delete tmp folder after request finish', () => {
+    app.httpRequest()
+      .get('/case2?folder=foo')
       .expect('hi, tmpfs')
       .expect(200)
       .end(() => {
@@ -31,7 +53,7 @@ describe('test/tmpfs.test.js', () => {
 
   it('should delete tmp folder after request error', () => {
     app.httpRequest()
-      .get('/?folder=bar&scene=error')
+      .get('/case2?folder=bar&scene=error')
       .expect('mock error')
       .expect(500)
       .end(() => {

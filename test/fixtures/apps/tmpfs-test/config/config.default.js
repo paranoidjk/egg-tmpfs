@@ -1,7 +1,6 @@
 'use strict';
 
-module.exports = appInfo => ({
+module.exports = () => ({
   keys: '123456',
-  cachePath: appInfo.baseDir + '/tmp',
 });
 
