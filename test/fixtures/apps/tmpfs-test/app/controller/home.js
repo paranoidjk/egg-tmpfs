@@ -58,6 +58,23 @@ class HomeController extends Controller {
 
     this.ctx.body = 'hi, ' + this.app.plugins.tmpfs.name;
   }
+
+  async case4() {
+    // create a temp file
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
+    if (!fs.existsSync(cotainer)) {
+      fs.mkdirSync(cotainer);
+    }
+    const tmpFile = path.resolve(cotainer, 'not-exist');
+    this.ctx.tmpfs.mark(tmpFile);
+
+    // response
+    if (this.ctx.query.scene === 'error') {
+      throw new Error('mock error');
+    }
+
+    this.ctx.body = 'hi, ' + this.app.plugins.tmpfs.name;
+  }
 }
 
 module.exports = HomeController;
