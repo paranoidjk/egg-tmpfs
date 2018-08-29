@@ -10,7 +10,7 @@ class HomeController extends Controller {
     const tmpFile = path.resolve(this.app.baseDir, 'tmp-2', this.ctx.query.folder);
     fs.mkdirSync(tmpFile);
     // mark it's need to be clean
-    this.ctx.tmpfs.add(tmpFile);
+    this.ctx.tmpfs.mark(tmpFile);
 
     // response
     if (this.ctx.query.scene === 'error') {
@@ -21,7 +21,7 @@ class HomeController extends Controller {
   }
 
   async case2() {
-    // create a temp file
+    // create a temp file which need to be clean when request finished
     this.ctx.tmpfs.mkdirSync(this.ctx.query.folder);
 
     // response

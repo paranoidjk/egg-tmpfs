@@ -45,14 +45,30 @@ exports.tmpfs = {
 ```js
 // {app_root}/config/config.default.js
 exports.tmpfs = {
+  baseTmpPath: '/foo/bar',
 };
 ```
 
 see [config/config.default.js](config/config.default.js) for more detail.
 
+## api
+
+#### ctx.tmpfs.mkdirSync(path[, mode])
+
+same as [fs.mkdirSync](https://nodejs.org/dist/latest-v8.x/docs/api/fs.html#fs_fs_mkdirsync_path_mode), but path will based on `config.tmpfs.baseTmpPath`, and the created folder will be auto cleand when request is finished or errored.
+
+
+#### ctx.tmpfs.mark(path)
+
+just incase you have to use original node fs module, then you can create file first, then mark it need to be delete.
+
+#### ctx.tmpfs.clean()
+
+generally, you do not need to use this :) egg-tmpfs will auto call clean.
+
 ## Example
 
-<!-- example here -->
+see [test](/test/fixtures/apps/tmpfs-test/app/controller/home.js)
 
 ## Questions & Suggestions
 

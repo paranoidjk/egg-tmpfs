@@ -5,10 +5,10 @@ module.exports = appInfo => {
     /**
      * egg-tmpfs default config
      * @member Config#tmpfs
-     * @property {String} cachePath - where to store the tmp file
+     * @property {String} baseTmpPath - where to store the tmp file
      */
     tmpfs: {
-      cachePath: appInfo.baseDir + '/tmp',
+      baseTmpPath: appInfo.baseDir + '/tmp',
     },
   };
 };
