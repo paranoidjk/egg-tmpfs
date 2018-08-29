@@ -1,5 +1,7 @@
 # egg-tmpfs
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/paranoidjk/egg-tmpfs.svg)](https://greenkeeper.io/)
+
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][codecov-image]][codecov-url]
