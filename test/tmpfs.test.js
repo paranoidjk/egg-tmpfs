@@ -18,47 +18,75 @@ describe('test/tmpfs.test.js', () => {
   after(() => app.close());
   afterEach(mock.restore);
 
-  it('should delete tmp folder after request finish', () => {
-    app.httpRequest()
-      .get('/case1?folder=foo')
-      .expect('hi, tmpfs')
-      .expect(200)
-      .end(() => {
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/foo')) === false);
-      });
+  describe('mark', () => {
+    it('should delete tmp folder after request finish', () => {
+      app.httpRequest()
+        .get('/case1?folder=foo')
+        .expect('hi, tmpfs')
+        .expect(200)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/foo')) === false);
+        });
+    });
+
+    it('should delete tmp folder after request error', () => {
+      app.httpRequest()
+        .get('/case1?folder=bar&scene=error')
+        .expect('mock error')
+        .expect(500)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/bar')) === false);
+        });
+    });
   });
 
-  it('should delete tmp folder after request error', () => {
-    app.httpRequest()
-      .get('/case1?folder=bar&scene=error')
-      .expect('mock error')
-      .expect(500)
-      .end(() => {
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/bar')) === false);
-      });
+  describe('unmark', () => {
+    it('should not delete tmp folder after request finish', () => {
+      app.httpRequest()
+        .get('/case3?folder=xixi')
+        .expect('hi, tmpfs')
+        .expect(200)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/xixi')) === true);
+        });
+    });
+
+    it('should not delete tmp folder after request error', () => {
+      app.httpRequest()
+        .get('/case3?folder=haha&scene=error')
+        .expect('mock error')
+        .expect(500)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/haha')) === true);
+        });
+    });
   });
 
-  it('should delete tmp folder after request finish', () => {
-    app.httpRequest()
-      .get('/case2?folder=foo')
-      .expect('hi, tmpfs')
-      .expect(200)
-      .end(() => {
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp')) === true);
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp/foo')) === false);
-      });
-  });
+  describe('mkdirSync', () => {
+    it('should delete tmp folder after request finish', () => {
+      app.httpRequest()
+        .get('/case2?folder=foo')
+        .expect('hi, tmpfs')
+        .expect(200)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp/foo')) === false);
+        });
+    });
 
-  it('should delete tmp folder after request error', () => {
-    app.httpRequest()
-      .get('/case2?folder=bar&scene=error')
-      .expect('mock error')
-      .expect(500)
-      .end(() => {
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp')) === true);
-        assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp/bar')) === false);
-      });
+    it('should delete tmp folder after request error', () => {
+      app.httpRequest()
+        .get('/case2?folder=bar&scene=error')
+        .expect('mock error')
+        .expect(500)
+        .end(() => {
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp/bar')) === false);
+        });
+    });
   });
 });

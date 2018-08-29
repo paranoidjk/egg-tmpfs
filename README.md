@@ -62,9 +62,13 @@ same as [fs.mkdirSync](https://nodejs.org/dist/latest-v8.x/docs/api/fs.html#fs_f
 
 just incase you have to use original node fs module, then you can create file first, then mark it need to be delete.
 
+#### ctx.tmpfs.unmark(path)
+
+to revert what `ctx.tmpfs.mark(path)` did.
+
 #### ctx.tmpfs.clean()
 
-generally, you do not need to use this :) egg-tmpfs will auto call clean.
+Generally, you do not need to use this :) egg-tmpfs will auto call clean.
 
 ## Example
 

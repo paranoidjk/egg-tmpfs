@@ -1,6 +1,6 @@
 {
   "name": "egg-tmpfs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A plugin for egg which help to create and auto clean temp folder when request finish or error",
   "eggPlugin": {
     "name": "tmpfs"
