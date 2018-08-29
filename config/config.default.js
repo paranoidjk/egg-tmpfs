@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * egg-clean default config
- * @member Config#clean
+ * egg-tmpfs default config
+ * @member Config#tmpfs
  * @property {String} SOME_KEY - some description
  */
-exports.clean = {
+exports.tmpfs = {
 
 };

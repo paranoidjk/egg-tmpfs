@@ -1,4 +1,4 @@
-# egg-clean
+# egg-tmpfs
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -7,18 +7,18 @@
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-clean.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-clean
-[travis-image]: https://img.shields.io/travis/eggjs/egg-clean.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-clean
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-clean.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-clean?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-clean.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-clean
-[snyk-image]: https://snyk.io/test/npm/egg-clean/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-clean
-[download-image]: https://img.shields.io/npm/dm/egg-clean.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-clean
+[npm-image]: https://img.shields.io/npm/v/egg-tmpfs.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-tmpfs
+[travis-image]: https://img.shields.io/travis/eggjs/egg-tmpfs.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-tmpfs
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-tmpfs.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-tmpfs?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-tmpfs.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-tmpfs
+[snyk-image]: https://snyk.io/test/npm/egg-tmpfs/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/egg-tmpfs
+[download-image]: https://img.shields.io/npm/dm/egg-tmpfs.svg?style=flat-square
+[download-url]: https://npmjs.org/package/egg-tmpfs
 
 <!--
 Description here.
@@ -28,7 +28,7 @@ Description here.
 
 ### 依赖的 egg 版本
 
-egg-clean 版本 | egg 1.x
+egg-tmpfs 版本 | egg 1.x
 --- | ---
 1.x | 😁
 0.x | ❌
@@ -47,9 +47,9 @@ egg-clean 版本 | egg 1.x
 
 ```js
 // config/plugin.js
-exports.clean = {
+exports.tmpfs = {
   enable: true,
-  package: 'egg-clean',
+  package: 'egg-tmpfs',
 };
 ```
 

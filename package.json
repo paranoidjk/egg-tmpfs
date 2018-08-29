@@ -1,9 +1,9 @@
 {
-  "name": "egg-clean",
-  "version": "1.0.0",
-  "description": "A plugin for egg which help to clean temp folder when request finish",
+  "name": "egg-tmpfs",
+  "version": "0.0.1",
+  "description": "A plugin for egg which help to create and auto clean temp folder when request finish or error",
   "eggPlugin": {
-    "name": "clean"
+    "name": "tmpfs"
   },
   "keywords": [
     "egg",
@@ -39,19 +39,20 @@
   "files": [
     "app",
     "lib",
-    "config"
+    "config",
+    "app.js"
   ],
   "ci": {
     "version": "8, 9"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-clean.git"
+    "url": "git+https://github.com/paranoidjk/egg-tmpfs.git"
   },
   "bugs": {
     "url": "https://github.com/eggjs/egg/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-clean#readme",
+  "homepage": "https://github.com/paranoidjk/egg-tmpfs#readme",
   "author": "paranoidjk",
   "license": "MIT"
 }
