@@ -9,12 +9,12 @@
 
 [npm-image]: https://img.shields.io/npm/v/egg-tmpfs.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-tmpfs
-[travis-image]: https://img.shields.io/travis/eggjs/egg-tmpfs.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-tmpfs
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-tmpfs.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-tmpfs?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-tmpfs.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-tmpfs
+[travis-image]: https://img.shields.io/travis/paranoidjk/egg-tmpfs.svg?style=flat-square
+[travis-url]: https://travis-ci.org/paranoidjk/egg-tmpfs
+[codecov-image]: https://img.shields.io/codecov/c/github/paranoidjk/egg-tmpfs.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/paranoidjk/egg-tmpfs?branch=master
+[david-image]: https://img.shields.io/david/paranoidjk/egg-tmpfs.svg?style=flat-square
+[david-url]: https://david-dm.org/paranoidjk/egg-tmpfs
 [snyk-image]: https://snyk.io/test/npm/egg-tmpfs/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-tmpfs
 [download-image]: https://img.shields.io/npm/dm/egg-tmpfs.svg?style=flat-square
