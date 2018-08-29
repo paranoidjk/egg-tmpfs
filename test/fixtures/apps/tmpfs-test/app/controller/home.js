@@ -7,7 +7,11 @@ const path = require('path');
 class HomeController extends Controller {
   async case1() {
     // create a temp file
-    const tmpFile = path.resolve(this.app.baseDir, 'tmp-2', this.ctx.query.folder);
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
+    if (!fs.existsSync(cotainer)) {
+      fs.mkdirSync(cotainer);
+    }
+    const tmpFile = path.resolve(cotainer, this.ctx.query.folder);
     fs.mkdirSync(tmpFile);
     // mark it's need to be clean
     this.ctx.tmpfs.mark(tmpFile);
@@ -34,7 +38,11 @@ class HomeController extends Controller {
 
   async case3() {
     // create a temp file
-    const tmpFile = path.resolve(this.app.baseDir, 'tmp-2', this.ctx.query.folder);
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
+    if (!fs.existsSync(cotainer)) {
+      fs.mkdirSync(cotainer);
+    }
+    const tmpFile = path.resolve(cotainer, this.ctx.query.folder);
     fs.mkdirSync(tmpFile);
     // mark it's need to be clean
     this.ctx.tmpfs.mark(tmpFile);
