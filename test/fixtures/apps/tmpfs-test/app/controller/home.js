@@ -1,18 +1,18 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 class HomeController extends Controller {
   async case1() {
     // create a temp file
-    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
-    if (!fs.existsSync(cotainer)) {
-      fs.mkdirSync(cotainer);
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-1');
+    if (!await fs.exists(cotainer)) {
+      await fs.ensureDir(cotainer);
     }
     const tmpFile = path.resolve(cotainer, this.ctx.query.folder);
-    fs.mkdirSync(tmpFile);
+    await fs.ensureDir(cotainer);
     // mark it's need to be clean
     this.ctx.tmpfs.mark(tmpFile);
 
@@ -26,7 +26,7 @@ class HomeController extends Controller {
 
   async case2() {
     // create a temp file which need to be clean when request finished
-    this.ctx.tmpfs.mkdirSync(this.ctx.query.folder);
+    await this.ctx.tmpfs.ensureDir(this.ctx.query.folder);
 
     // response
     if (this.ctx.query.scene === 'error') {
@@ -38,12 +38,12 @@ class HomeController extends Controller {
 
   async case3() {
     // create a temp file
-    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
-    if (!fs.existsSync(cotainer)) {
-      fs.mkdirSync(cotainer);
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-3');
+    if (!await fs.exists(cotainer)) {
+      await fs.ensureDir(cotainer);
     }
     const tmpFile = path.resolve(cotainer, this.ctx.query.folder);
-    fs.mkdirSync(tmpFile);
+    await fs.ensureDir(tmpFile);
     // mark it's need to be clean
     this.ctx.tmpfs.mark(tmpFile);
 
@@ -61,9 +61,9 @@ class HomeController extends Controller {
 
   async case4() {
     // create a temp file
-    const cotainer = path.resolve(this.app.baseDir, 'tmp-2');
-    if (!fs.existsSync(cotainer)) {
-      fs.mkdirSync(cotainer);
+    const cotainer = path.resolve(this.app.baseDir, 'tmp-4');
+    if (!await fs.exists(cotainer)) {
+      await fs.ensureDir(cotainer);
     }
     const tmpFile = path.resolve(cotainer, 'not-exist');
     this.ctx.tmpfs.mark(tmpFile);

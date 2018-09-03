@@ -3,7 +3,7 @@
 const mock = require('egg-mock');
 const assert = require('power-assert');
 const del = require('del');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 describe('test/tmpfs.test.js', () => {
@@ -17,7 +17,9 @@ describe('test/tmpfs.test.js', () => {
 
   after(() => {
     del.sync(path.resolve(app.baseDir, 'tmp'));
-    del.sync(path.resolve(app.baseDir, 'tmp-2'));
+    del.sync(path.resolve(app.baseDir, 'tmp-1'));
+    del.sync(path.resolve(app.baseDir, 'tmp-3'));
+    del.sync(path.resolve(app.baseDir, 'tmp-4'));
   });
 
   after(() => app.close());
@@ -30,8 +32,8 @@ describe('test/tmpfs.test.js', () => {
         .expect('hi, tmpfs')
         .expect(200)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/foo')) === false);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-1')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-1/foo')) === false);
         });
     });
 
@@ -41,8 +43,8 @@ describe('test/tmpfs.test.js', () => {
         .expect('mock error')
         .expect(500)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/bar')) === false);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-1')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-1/bar')) === false);
         });
     });
   });
@@ -54,8 +56,8 @@ describe('test/tmpfs.test.js', () => {
         .expect('hi, tmpfs')
         .expect(200)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/xixi')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-3')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-3/xixi')) === true);
         });
     });
 
@@ -65,13 +67,13 @@ describe('test/tmpfs.test.js', () => {
         .expect('mock error')
         .expect(500)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/haha')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-3')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-3/haha')) === true);
         });
     });
   });
 
-  describe('mkdirSync', () => {
+  describe('ensureDir', () => {
     it('should delete tmp folder after request finish', () => {
       app.httpRequest()
         .get('/case2?folder=foo')
@@ -102,8 +104,8 @@ describe('test/tmpfs.test.js', () => {
         .expect('hi, tmpfs')
         .expect(200)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/not-exist')) === false);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-4')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-4/not-exist')) === false);
         });
     });
 
@@ -113,8 +115,8 @@ describe('test/tmpfs.test.js', () => {
         .expect('mock error')
         .expect(500)
         .end(() => {
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2')) === true);
-          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-2/bar')) === false);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-4')) === true);
+          assert(fs.existsSync(path.resolve(__dirname, app.baseDir, 'tmp-4/bar')) === false);
         });
     });
   });

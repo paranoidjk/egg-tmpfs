@@ -55,9 +55,9 @@ see [config/config.default.js](config/config.default.js) for more detail.
 
 ## api
 
-#### ctx.tmpfs.mkdirSync(path[, mode])
+#### ctx.tmpfs.ensureDir(dir[,options][,callback])
 
-same as [fs.mkdirSync](https://nodejs.org/dist/latest-v8.x/docs/api/fs.html#fs_fs_mkdirsync_path_mode), but path will based on `config.tmpfs.baseTmpPath`, and the created folder will be auto cleand when request is finished or errored.
+same as [fsextra.ensureDir](https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md), but path will based on `config.tmpfs.baseTmpPath`, and the created folder will be auto cleand when request is finished or errored.
 
 
 #### ctx.tmpfs.mark(path)
@@ -70,7 +70,9 @@ to revert what `ctx.tmpfs.mark(path)` did.
 
 #### ctx.tmpfs.clean()
 
-Generally, you do not need to use this :) egg-tmpfs will auto call clean.
+clean all tmp folders, return a Promise
+
+> Generally, you do not need to use this :) egg-tmpfs will auto call clean.
 
 ## Example
 
